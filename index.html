@@ -5,108 +5,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
 
     <style>
-        select {
-            border: none;
-            outline: none;
-            color: #ffffff;
-            background: #151515;
-            margin-bottom: 10px;
-            width: 100%;
-        }
-
-        select::-webkit-scrollbar {
+        input::-webkit-inner-spin-button,
+        input::-webkit-outer-spin-button {
             appearance: none;
         }
     </style>
 
-    <title>JS Practice</title>
+    <title>Number Analyzer</title>
 </head>
 
-<body>
-    <div class="container">
-        <h2>Number analyzer</h2>
+<body style="height: 100vh;" class="d-flex flex-column align-items-center justify-content-center gap-5 bg-dark">
+    <header>
+        <h2 class="text-light text-uppercase">Number analyzer</h2>
+    </header>
 
-        <p>
-            <input type="number" id="number" placeholder="Add a number">
-            <button id="add">Add</button>
-        </p>
+    <main class="bg-light d-flex flex-column align-items-center justify-content-center gap-3 p-4 rounded">
+        <div class="d-flex gap-2">
+            <input type="number" id="number" class="form-control" placeholder="Add a number">
+            <button id="add" class="btn btn-primary">Add</button>
+        </div>
 
-        <select id="list" size="6">
+        <select id="list" class="form-select" size="4">
         </select>
 
-        <button id="finish">Finish</button>
+        <button id="finish" class="btn btn-success w-100">Finish</button>
 
-        <p id="result"></p>
-    </div>
+        <p id="result" class="text-center text-secondary"></p>
+    </main>
 
-    <script>
-        var values = [];
+    <footer style="width: 225px;" class="d-flex flex-wrap justify-content-center gap-2">
+        <p class="text-white">Made by</p>
 
-        document.getElementById('add').addEventListener('click', () => {
-            let number = Number(document.getElementById('number').value);
-            let list = document.getElementById('list');
-            let result = document.getElementById('result');
+        <a href="https://github.com/gabrielsl11" class="text-primary link-underline-dark">
+            <i class="bi bi-github"></i>
 
-            function isnumber(n) {
-                return n >= 1 && n <= 1000;
-            }
+            <span>gabrielsl11</span>
+        </a>
 
-            function inlist(n, l) {
-                return l.indexOf(n) != -1;
-            }
+        <p class="text-white">Teacher</p>
 
-            if (isnumber(number) && !inlist(number, values)) {
-                values.push(number);
-                let option = document.createElement('option');
-                option.text = `Value ${number} added.`;
-                option.value = number;
-                result.innerHTML = '';
-                list.appendChild(option);
-            } else {
-                window.alert('Invalid value or already in list.');
-            }
+        <a href="https://github.com/gustavoguanabara" class="text-primary link-underline-dark">
+            <i class="bi bi-github"></i>
 
-            document.getElementById('number').value = '';
-            document.getElementById('number').focus();
-        }
-        )
+            <span>gustavoguanabara</span>
+        </a>
+    </footer>
 
-        document.getElementById('finish').addEventListener('click', () => {
-            let result = document.getElementById('result');
-
-            if (values.length == 0) {
-                window.alert('add values before finishing.');
-            } else {
-                let total = values.length;
-                let smaller = values[0];
-                let bigger = values[0];
-                let sum = 0;
-
-                for (p in values) {
-                    sum += values[p];
-                    if (values[p] > bigger) {
-                        bigger = values[p];
-                    }
-
-                    if (values[p] < smaller) {
-                        smaller = values[p];
-                    }
-                }
-
-                let average = sum / total;
-
-                result.innerHTML = `<p>There is a total of ${total} registered numbers.</p>`;
-                result.innerHTML += `<p>The smaller number is ${smaller}.</p>`;
-                result.innerHTML += `<p>The bigger number is ${bigger}.</p>`;
-                result.innerHTML += `<p>The sum of all numbers is ${sum}.</p>`;
-                result.innerHTML += `<p>The average of all numbers is ${average}.</p>`;
-            }
-        })
-
-    </script>
+    <script type="text/javascript" src="assets/js/script.js"></script>
 </body>
 
 </html>
